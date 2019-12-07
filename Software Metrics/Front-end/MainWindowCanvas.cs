@@ -20,7 +20,7 @@ namespace Software_Metrics.Front_end
         }
         private MainWindowCanvas(Canvas canvas) : base(canvas)
         {
-
+            CalculateFP.Initialize();
         }
 
         public override void Initialize()

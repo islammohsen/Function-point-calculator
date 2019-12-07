@@ -11,6 +11,7 @@ namespace Software_Metrics.Front_end
     class UFPCanvas : CustomCanvas
     {
         private static UFPCanvas ufpCanvas;
+        private List<Tuple<string, string, int>> data;
 
         public static UFPCanvas GetInstance(Canvas canvas)
         {
@@ -20,7 +21,7 @@ namespace Software_Metrics.Front_end
         }
         private UFPCanvas(Canvas canvas) : base(canvas)
         {
-
+            data = new List<Tuple<string, string, int>>();
         }
 
         public override void Initialize()
@@ -143,8 +144,10 @@ namespace Software_Metrics.Front_end
                     + ", "
                     + inputCountTextBox.Text);
                 addedItemsStackPanel.Children.Add(addedItemLabel);
+                data.Add(Tuple.Create((string)inputParameterComboBox.SelectedValue, (string)inputTypeComboBox.SelectedValue, count));
                 ((List<Tuple<string, string, int>>)addedItemsStackPanel.Tag).Add(new Tuple<string, string, int>((string)inputParameterComboBox.SelectedValue, (string)inputTypeComboBox.SelectedValue, count));
-                MessageBox.Show("Added");
+                // TODO: remove Message Box
+                //MessageBox.Show("Added");
             }
             else
             {
@@ -154,6 +157,9 @@ namespace Software_Metrics.Front_end
 
         private void Next_Button_Click(object sender, RoutedEventArgs e)
         {
+            CalculateFP.CalculateUFP(data);
+            // TODO: remove Message Box
+            MessageBox.Show(CalculateFP.UFP.ToString());
             MainWindow mainWindow = FrontEndHelper.GetMainWindow();
             if(mainWindow.CurrentCanvas != null)
                 mainWindow.CurrentCanvas.Hide();

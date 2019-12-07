@@ -85,6 +85,8 @@ namespace Software_Metrics.Front_end
                 "Significant",
                 "Essential"
             };
+
+
             for (int i = 0; i < 14; i++)
             {
                 ComboBox comboBox = new ComboBox
@@ -96,10 +98,25 @@ namespace Software_Metrics.Front_end
                 };
                 comboBoxList.Add(comboBox);
                 comboBoxStackPanel.Children.Add(comboBox);
-            }
+           }
 
             Button calculateButton = FrontEndHelper.CreateButton(100, 40, "Calculate");
             tcfStackPanel.Children.Add(calculateButton);
+            calculateButton.Tag = comboBoxList;
+            calculateButton.Click += Calculate_Button_Click;
+        }
+
+        private void Calculate_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            List<ComboBox> boxes =(List<ComboBox>) btn.Tag;
+            List<string> data = new List<string>();
+            foreach(var combobox in boxes)
+            {
+                data.Add(combobox.Text);
+            }
+            CalculateFP.CalculateTCF(data);
+            CalculateFP.CalculateFPValue();
         }
     }
 }

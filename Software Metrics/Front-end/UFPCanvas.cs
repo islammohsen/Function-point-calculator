@@ -36,6 +36,7 @@ namespace Software_Metrics.Front_end
             {
                 Margin = new Thickness
                 {
+                    Left = 20,
                     Top = 150
                 },
                 ColumnDefinitions =
@@ -80,7 +81,7 @@ namespace Software_Metrics.Front_end
             TextBox inputCountTextBox = new TextBox
             {
                 Height =  30,
-                FontSize = 14
+                FontSize = 14,
             };
             Grid.SetColumn(inputCountTextBox, 2);
             ufpInputDataGrid.Children.Add(inputCountTextBox);
@@ -89,7 +90,8 @@ namespace Software_Metrics.Front_end
             {
                 Margin = new Thickness
                 {
-                    Top = 50
+                    Left = 20,
+                    Top = 20
                 },
                 ColumnDefinitions =
                 {
@@ -116,9 +118,14 @@ namespace Software_Metrics.Front_end
             Expander addedItemsExpander = new Expander
             {
                 Width = canvas.Width,
-                Height = 100,
+                Height = 120,
                 Header = "Input Data",
-                IsExpanded = true
+                IsExpanded = true,
+                Margin = new Thickness
+                {
+                    Top = 30,
+                    Left = 20
+                }
             };
             ufpStackPanel.Children.Add(addedItemsExpander);
             ScrollViewer addedItemsScrollViewer = new ScrollViewer();

@@ -117,7 +117,8 @@ namespace Software_Metrics.Front_end
             {
                 Width = canvas.Width,
                 Height = 100,
-                Header = "Input Data"
+                Header = "Input Data",
+                IsExpanded = true
             };
             ufpStackPanel.Children.Add(addedItemsExpander);
             ScrollViewer addedItemsScrollViewer = new ScrollViewer();

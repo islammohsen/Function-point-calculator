@@ -110,7 +110,7 @@ namespace Software_Metrics.Front_end
 
             Button nextButton = FrontEndHelper.CreateButton(100, 50, "Next");
             nextButton.Click += Next_Button_Click;
-            Grid.SetColumn(addButton, 1);
+            Grid.SetColumn(nextButton, 1);
             ufpButtonsGrid.Children.Add(nextButton);
 
             Expander addedItemsExpander = new Expander

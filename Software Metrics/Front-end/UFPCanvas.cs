@@ -167,7 +167,7 @@ namespace Software_Metrics.Front_end
         {
             CalculateFP.CalculateUFP(data);
             // TODO: remove Message Box
-            MessageBox.Show(CalculateFP.UFP.ToString());
+            MessageBox.Show("UFP = "+CalculateFP.UFP.ToString());
             MainWindow mainWindow = FrontEndHelper.GetMainWindow();
             if(mainWindow.CurrentCanvas != null)
                 mainWindow.CurrentCanvas.Hide();

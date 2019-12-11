@@ -98,7 +98,7 @@ namespace Software_Metrics.Front_end
                 };
                 comboBoxList.Add(comboBox);
                 comboBoxStackPanel.Children.Add(comboBox);
-           }
+            }
 
             Button calculateButton = FrontEndHelper.CreateButton(100, 40, "Calculate");
             tcfStackPanel.Children.Add(calculateButton);
@@ -117,6 +117,10 @@ namespace Software_Metrics.Front_end
             }
             CalculateFP.CalculateTCF(data);
             CalculateFP.CalculateFPValue();
+            MainWindow mainWindow = FrontEndHelper.GetMainWindow();
+            if (mainWindow.CurrentCanvas != null)
+                mainWindow.CurrentCanvas.Hide();
+            mainWindow.InitializeResultCanvas();
         }
     }
 }

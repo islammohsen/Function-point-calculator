@@ -68,6 +68,7 @@
     <Compile Include="Front-end\CustomCanvas.cs" />
     <Compile Include="Front-end\FrontEndHelper.cs" />
     <Compile Include="Front-end\MainWindowCanvas.cs" />
+    <Compile Include="Front-end\ResultCanvas.cs" />
     <Compile Include="Front-end\TCFCanvas.cs" />
     <Compile Include="Front-end\UFPCanvas.cs" />
     <Compile Include="MainWindow.xaml.cs">

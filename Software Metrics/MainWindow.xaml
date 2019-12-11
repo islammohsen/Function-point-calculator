@@ -16,5 +16,8 @@
         <Canvas x:Name="tcfCanvas">
 
         </Canvas>
+        <Canvas x:Name="resultCanvas">
+
+        </Canvas>
     </Grid>
 </Window>

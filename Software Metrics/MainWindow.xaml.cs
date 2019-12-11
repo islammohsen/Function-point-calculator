@@ -60,5 +60,13 @@ namespace Software_Metrics
             TCFCanvas.SetCanvasCoord(0, 0);
             TCFCanvas.Show();
         }
+
+        public void InitializeResultCanvas()
+        {
+            CustomCanvas ResultCanvas = Front_end.ResultCanvas.GetInstance(resultCanvas);
+            ResultCanvas.SetCanvasDimensions(Window.Width, Window.Height);
+            ResultCanvas.SetCanvasCoord(0, 0);
+            ResultCanvas.Show();
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace Software_Metrics.Front_end
             {
                 Margin = new Thickness
                 {
+                    Left = 20,
                     Top = 150
                 },
                 ColumnDefinitions =
@@ -80,7 +81,7 @@ namespace Software_Metrics.Front_end
             TextBox inputCountTextBox = new TextBox
             {
                 Height =  30,
-                FontSize = 14
+                FontSize = 14,
             };
             Grid.SetColumn(inputCountTextBox, 2);
             ufpInputDataGrid.Children.Add(inputCountTextBox);
@@ -89,7 +90,8 @@ namespace Software_Metrics.Front_end
             {
                 Margin = new Thickness
                 {
-                    Top = 50
+                    Left = 20,
+                    Top = 20
                 },
                 ColumnDefinitions =
                 {
@@ -110,14 +112,20 @@ namespace Software_Metrics.Front_end
 
             Button nextButton = FrontEndHelper.CreateButton(100, 50, "Next");
             nextButton.Click += Next_Button_Click;
-            Grid.SetColumn(addButton, 1);
+            Grid.SetColumn(nextButton, 1);
             ufpButtonsGrid.Children.Add(nextButton);
 
             Expander addedItemsExpander = new Expander
             {
                 Width = canvas.Width,
-                Height = 100,
-                Header = "Input Data"
+                Height = 120,
+                Header = "Input Data",
+                IsExpanded = true,
+                Margin = new Thickness
+                {
+                    Top = 30,
+                    Left = 20
+                }
             };
             ufpStackPanel.Children.Add(addedItemsExpander);
             ScrollViewer addedItemsScrollViewer = new ScrollViewer();
@@ -159,7 +167,7 @@ namespace Software_Metrics.Front_end
         {
             CalculateFP.CalculateUFP(data);
             // TODO: remove Message Box
-            MessageBox.Show(CalculateFP.UFP.ToString());
+            MessageBox.Show("UFP = "+CalculateFP.UFP.ToString());
             MainWindow mainWindow = FrontEndHelper.GetMainWindow();
             if(mainWindow.CurrentCanvas != null)
                 mainWindow.CurrentCanvas.Hide();

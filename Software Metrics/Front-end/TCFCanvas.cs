@@ -43,7 +43,11 @@ namespace Software_Metrics.Front_end
 
             StackPanel labelsStackPanel = new StackPanel
             {
-                Width = 0.5 * canvas.Width
+                Width = 0.5 * canvas.Width,
+                Margin = new Thickness
+                {
+                    Left = 20
+                }
             };
             Grid.SetColumn(labelsStackPanel, 0);
             tcfGrid.Children.Add(labelsStackPanel);
@@ -104,6 +108,10 @@ namespace Software_Metrics.Front_end
             tcfStackPanel.Children.Add(calculateButton);
             calculateButton.Tag = comboBoxList;
             calculateButton.Click += Calculate_Button_Click;
+            calculateButton.Margin = new Thickness
+            {
+                Right = canvas.Width/4
+            };
         }
 
         private void Calculate_Button_Click(object sender, RoutedEventArgs e)

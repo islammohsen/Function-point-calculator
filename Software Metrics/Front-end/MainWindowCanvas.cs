@@ -31,7 +31,7 @@ namespace Software_Metrics.Front_end
             };
             canvas.Children.Add(mainWindowStackPanel);
 
-            Label welcomeLabel = FrontEndHelper.CreateLabel(300, 50, 24, "Function Point Calcultor");
+            Label welcomeLabel = FrontEndHelper.CreateLabel(300, 50, 24, "Function Point Calculator");
             welcomeLabel.Margin = new Thickness
             {
                 Top = canvas.Height / 3

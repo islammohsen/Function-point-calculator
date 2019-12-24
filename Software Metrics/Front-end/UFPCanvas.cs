@@ -151,14 +151,29 @@ namespace Software_Metrics.Front_end
             int count;
             if (int.TryParse(inputCountTextBox.Text, out count))
             {
+                Grid itemsGrid = new Grid();
+                addedItemsStackPanel.Children.Add(itemsGrid);
                 Label addedItemLabel = FrontEndHelper.CreateLabel(canvas.Width, 30, 15,
                     inputParameterComboBox.SelectedValue
                     + ", " + inputTypeComboBox.SelectedValue
                     + ", "
                     + inputCountTextBox.Text);
-                addedItemsStackPanel.Children.Add(addedItemLabel);
-                data.Add(Tuple.Create((string)inputParameterComboBox.SelectedValue, (string)inputTypeComboBox.SelectedValue, count));
-                ((List<Tuple<string, string, int>>)addedItemsStackPanel.Tag).Add(new Tuple<string, string, int>((string)inputParameterComboBox.SelectedValue, (string)inputTypeComboBox.SelectedValue, count));
+                Button deleteButton = FrontEndHelper.CreateButton(40, 15, "Del");
+                deleteButton.FontSize = 10;
+                Grid.SetColumn(deleteButton,1);
+                Grid.SetColumn(addedItemLabel,0);
+                itemsGrid.Children.Add(addedItemLabel);
+                itemsGrid.Children.Add(deleteButton);
+
+                var insertedData = Tuple.Create((string) inputParameterComboBox.SelectedValue,
+                    (string) inputTypeComboBox.SelectedValue, count);
+                deleteButton.Tag = new List<Object>();
+                ((List<object>) deleteButton.Tag).Add(insertedData);
+                ((List<object>) deleteButton.Tag).Add(itemsGrid);
+                deleteButton.Click += DeleteButtonOnClick;
+                data.Add(insertedData);
+                ((List<Tuple<string, string, int>>)addedItemsStackPanel.Tag).Add(insertedData);
+                ((List<object>)deleteButton.Tag).Add(addedItemsStackPanel);
                 // TODO: remove Message Box
                 //MessageBox.Show("Added");
             }
@@ -166,6 +181,18 @@ namespace Software_Metrics.Front_end
             {
                 MessageBox.Show("Count is not a number!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void DeleteButtonOnClick(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            var tags = (List<Object>) btn.Tag;
+            var toBeDeletedItem = (Tuple<string, string, int>)tags[0];
+            var toBeDeletedGrid = (Grid) tags[1];
+            var addedItemsStackPanel = (StackPanel) tags[2];
+            data.Remove(toBeDeletedItem);
+            addedItemsStackPanel.Children.Remove(toBeDeletedGrid);
+            //MessageBox.Show(toBeDeletedItem.ToString());
         }
 
         private void Next_Button_Click(object sender, RoutedEventArgs e)

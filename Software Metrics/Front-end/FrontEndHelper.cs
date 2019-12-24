@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -34,14 +35,14 @@ namespace Software_Metrics.Front_end
         private static void button_MouseLeave(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender;
-            button.Background = new SolidColorBrush(Color.FromRgb(0, 127, 175));
+            button.Background = new SolidColorBrush(Color.FromRgb(55, 0, 179));
             button.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
         private static void button_MouseEnter(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender;
-            button.Background = new SolidColorBrush(Color.FromRgb(0, 95, 127));
-            button.Foreground = new SolidColorBrush(Color.FromRgb(0, 127, 175));
+            button.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            button.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         }
 
         public static Button CreateButton(double width, double height, string content)
@@ -51,10 +52,12 @@ namespace Software_Metrics.Front_end
                 Width = width,
                 Height = height,
                 Content = content,
-                Background = new SolidColorBrush(Color.FromRgb(0, 127, 175)),
+                Background = new SolidColorBrush(Color.FromRgb(55, 0, 179)),
                 Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 FontSize = 20,
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                BorderThickness = new Thickness(0),
+                
             };
             obj.MouseEnter += button_MouseEnter;
             obj.MouseLeave += button_MouseLeave;

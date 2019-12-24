@@ -8,7 +8,6 @@
         Title="Function Point Calculator" Height="550" Width="800" x:Name="Window">
     <Grid>
         <Canvas x:Name="MainWindowCanvas">
-
         </Canvas>
         <Canvas x:Name="UfpCanvas">
 

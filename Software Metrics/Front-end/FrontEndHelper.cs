@@ -35,11 +35,13 @@ namespace Software_Metrics.Front_end
         {
             Button button = (Button)sender;
             button.Background = new SolidColorBrush(Color.FromRgb(0, 127, 175));
+            button.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
         private static void button_MouseEnter(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender;
             button.Background = new SolidColorBrush(Color.FromRgb(0, 95, 127));
+            button.Foreground = new SolidColorBrush(Color.FromRgb(0, 127, 175));
         }
 
         public static Button CreateButton(double width, double height, string content)

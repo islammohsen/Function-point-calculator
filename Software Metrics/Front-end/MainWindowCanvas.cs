@@ -34,11 +34,16 @@ namespace Software_Metrics.Front_end
             Label welcomeLabel = FrontEndHelper.CreateLabel(300, 50, 24, "Function Point Calculator");
             welcomeLabel.Margin = new Thickness
             {
-                Top = canvas.Height / 3
+                Top = canvas.Height / 3,
+                Bottom = 20
             };
+            welcomeLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
+            welcomeLabel.VerticalContentAlignment = VerticalAlignment.Center;
             mainWindowStackPanel.Children.Add(welcomeLabel);
 
-            Button calculateButton = FrontEndHelper.CreateButton(100, 50, "Calculate");
+            Button calculateButton = FrontEndHelper.CreateButton(110, 45, "Start!");
+            calculateButton.HorizontalContentAlignment = HorizontalAlignment.Center;
+            calculateButton.VerticalContentAlignment = VerticalAlignment.Center;
             mainWindowStackPanel.Children.Add(calculateButton);
             calculateButton.Click += FrontEndHelper.GetMainWindow().Calculate_Button_Click;
         }

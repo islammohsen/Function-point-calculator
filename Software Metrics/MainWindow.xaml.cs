@@ -26,6 +26,7 @@ namespace Software_Metrics
         public MainWindow()
         {
             InitializeComponent();
+            Window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             FrontEndHelper.SetMainWindow(this);
             InitializeMainWindowCanvas();
         }

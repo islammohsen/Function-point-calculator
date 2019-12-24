@@ -36,14 +36,14 @@ namespace Software_Metrics.Front_end
             {
                 Margin = new Thickness
                 {
-                    Left = 20,
-                    Top = 150
+                    Left = 30,
+                    Top = 50
                 },
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.3 * canvas.Width) },
                     new ColumnDefinition { Width = new GridLength(0.3 * canvas.Width) },
-                    new ColumnDefinition {Width = new GridLength(0.3 * canvas.Width) }
+                    new ColumnDefinition { Width = new GridLength(0.3 * canvas.Width) }
                 }
             };
             ufpStackPanel.Children.Add(ufpInputDataGrid);
@@ -80,7 +80,7 @@ namespace Software_Metrics.Front_end
 
             TextBox inputCountTextBox = new TextBox
             {
-                Height =  30,
+                Height = 30,
                 FontSize = 14,
             };
             Grid.SetColumn(inputCountTextBox, 2);
@@ -88,20 +88,21 @@ namespace Software_Metrics.Front_end
 
             Grid ufpButtonsGrid = new Grid
             {
+                Width = canvas.Width,
                 Margin = new Thickness
                 {
-                    Left = 20,
+                    Left = 15,
                     Top = 20
                 },
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(0.5 * canvas.Width) },
-                    new ColumnDefinition { Width = new GridLength(0.5 * canvas.Width) }
+                    new ColumnDefinition { Width = new GridLength(0.7 * canvas.Width) },
+                    new ColumnDefinition { Width = new GridLength(0.3 * canvas.Width) }
                 }
             };
             ufpStackPanel.Children.Add(ufpButtonsGrid);
 
-            Button addButton = FrontEndHelper.CreateButton(100, 50, "Add");
+            Button addButton = FrontEndHelper.CreateButton(220, 45, "Insert");
             addButton.Tag = new List<object>();
             addButton.Click += Add_Button_Click;
             ((List<object>)addButton.Tag).Add(inputParameterComboBox);
@@ -110,15 +111,15 @@ namespace Software_Metrics.Front_end
             Grid.SetColumn(addButton, 0);
             ufpButtonsGrid.Children.Add(addButton);
 
-            Button nextButton = FrontEndHelper.CreateButton(100, 50, "Next");
+            Button nextButton = FrontEndHelper.CreateButton(110, 45, "Next");
             nextButton.Click += Next_Button_Click;
             Grid.SetColumn(nextButton, 1);
             ufpButtonsGrid.Children.Add(nextButton);
 
             Expander addedItemsExpander = new Expander
             {
-                Width = canvas.Width,
-                Height = 120,
+                Width = canvas.Width / 2 + 200,
+                Height = 300,
                 Header = "Input Data",
                 IsExpanded = true,
                 Margin = new Thickness
@@ -127,8 +128,12 @@ namespace Software_Metrics.Front_end
                     Left = 20
                 }
             };
+            addedItemsExpander.HorizontalContentAlignment = HorizontalAlignment.Center;
             ufpStackPanel.Children.Add(addedItemsExpander);
-            ScrollViewer addedItemsScrollViewer = new ScrollViewer();
+            ScrollViewer addedItemsScrollViewer = new ScrollViewer()
+            {
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+            };
             StackPanel addedItemsStackPanel = new StackPanel();
             addedItemsExpander.Content = addedItemsScrollViewer;
             addedItemsScrollViewer.Content = addedItemsStackPanel;
@@ -138,11 +143,11 @@ namespace Software_Metrics.Front_end
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            List<object> list = (List<object>)((Button) sender).Tag;
+            List<object> list = (List<object>)((Button)sender).Tag;
             ComboBox inputParameterComboBox = (ComboBox)list[0];
-            ComboBox inputTypeComboBox = (ComboBox) list[1];
-            TextBox inputCountTextBox = (TextBox) list[2];
-            StackPanel addedItemsStackPanel = (StackPanel) list[3];
+            ComboBox inputTypeComboBox = (ComboBox)list[1];
+            TextBox inputCountTextBox = (TextBox)list[2];
+            StackPanel addedItemsStackPanel = (StackPanel)list[3];
             int count;
             if (int.TryParse(inputCountTextBox.Text, out count))
             {
@@ -159,7 +164,7 @@ namespace Software_Metrics.Front_end
             }
             else
             {
-                MessageBox.Show("Count isn't an integer");
+                MessageBox.Show("Count is not a number!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -167,9 +172,10 @@ namespace Software_Metrics.Front_end
         {
             CalculateFP.CalculateUFP(data);
             // TODO: remove Message Box
-            MessageBox.Show("UFP = "+CalculateFP.UFP.ToString());
+            MessageBox.Show("UFP = " + CalculateFP.UFP.ToString(), "UFP Result", 
+                MessageBoxButton.OK, MessageBoxImage.Information);
             MainWindow mainWindow = FrontEndHelper.GetMainWindow();
-            if(mainWindow.CurrentCanvas != null)
+            if (mainWindow.CurrentCanvas != null)
                 mainWindow.CurrentCanvas.Hide();
             mainWindow.InitializeTCFCanvas();
         }

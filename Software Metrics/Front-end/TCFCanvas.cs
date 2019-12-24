@@ -27,7 +27,12 @@ namespace Software_Metrics.Front_end
         {
             StackPanel tcfStackPanel = new StackPanel
             {
-                Width = canvas.Width
+                Width = canvas.Width,
+                Margin = new Thickness
+                {
+                    Top = 20,
+                    Left = 10
+                }
             };
             canvas.Children.Add(tcfStackPanel);
 
@@ -104,14 +109,16 @@ namespace Software_Metrics.Front_end
                 comboBoxStackPanel.Children.Add(comboBox);
             }
 
-            Button calculateButton = FrontEndHelper.CreateButton(100, 40, "Calculate");
+            Button calculateButton = FrontEndHelper.CreateButton(220, 45, "Calculate");
             tcfStackPanel.Children.Add(calculateButton);
             calculateButton.Tag = comboBoxList;
             calculateButton.Click += Calculate_Button_Click;
             calculateButton.Margin = new Thickness
             {
-                Right = canvas.Width/4
+                Top = 5,
+                Right = 20
             };
+            calculateButton.HorizontalAlignment = HorizontalAlignment.Center;
         }
 
         private void Calculate_Button_Click(object sender, RoutedEventArgs e)

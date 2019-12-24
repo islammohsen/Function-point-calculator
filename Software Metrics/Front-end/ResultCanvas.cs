@@ -32,14 +32,15 @@ namespace Software_Metrics.Front_end
             };
             canvas.Children.Add(resultStackPanel);
 
-            Label ufpLablel = FrontEndHelper.CreateLabel(200, 30, 14, "UFP : " + CalculateFP.UFP.ToString());
-            ufpLablel.Margin = new Thickness(0, 0.3 *canvas.Height, 0, 0);
+            Label ufpLablel = FrontEndHelper.CreateLabel(200, 32, 16, "UFP: \t" + CalculateFP.UFP.ToString());
+            ufpLablel.Margin = new Thickness(0, 0.2 * canvas.Height, 0, 0);
             resultStackPanel.Children.Add(ufpLablel);
 
-            Label tcfLabel = FrontEndHelper.CreateLabel(200, 30, 14, "TCF : " + CalculateFP.TCF.ToString());
+            Label tcfLabel = FrontEndHelper.CreateLabel(200, 32, 16, "TCF: \t" + CalculateFP.TCF.ToString());
             resultStackPanel.Children.Add(tcfLabel);
 
-            Label functionPointLabel = FrontEndHelper.CreateLabel(200, 30, 14, "Function Point : " + CalculateFP.FP.ToString());
+            Label functionPointLabel = FrontEndHelper.CreateLabel(200, 32, 16, "FP: \t" + CalculateFP.FP.ToString());
+            functionPointLabel.Margin = new Thickness(0, 0, 0, 50);
             resultStackPanel.Children.Add(functionPointLabel);
 
             List<string> languages = new List<string>
@@ -59,7 +60,8 @@ namespace Software_Metrics.Front_end
                 "Graphical Languages (icons)"
             };
 
-            Label label = FrontEndHelper.CreateLabel(100, 30, 14, "Language");
+            Label label = FrontEndHelper.CreateLabel(100, 32, 16, "Language");
+            label.Margin = new Thickness(0, 0, 0, 5);
             resultStackPanel.Children.Add(label);
             ComboBox languageComboBox = new ComboBox
             {
@@ -67,19 +69,20 @@ namespace Software_Metrics.Front_end
                 Height = 30,
                 ItemsSource = languages
             };
-            Label locLabel = FrontEndHelper.CreateLabel(200, 30, 14, "");
+            Label locLabel = FrontEndHelper.CreateLabel(200, 32, 16, "");
             languageComboBox.Tag = locLabel;
             languageComboBox.SelectionChanged += language_combobox_selection_changed;
             languageComboBox.SelectedIndex = 0;
+            languageComboBox.Margin = new Thickness(0, 0, 0, 5);
             resultStackPanel.Children.Add(languageComboBox);
             resultStackPanel.Children.Add(locLabel);
         }
 
         private void language_combobox_selection_changed(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox languageComboBox = (ComboBox) sender;
-            Label locLabel = (Label) languageComboBox.Tag;
-            locLabel.Content = "Loc : " + CalculateFP.CalculateLOC((string)languageComboBox.SelectedItem).ToString();
+            ComboBox languageComboBox = (ComboBox)sender;
+            Label locLabel = (Label)languageComboBox.Tag;
+            locLabel.Content = "LOC: " + CalculateFP.CalculateLOC((string)languageComboBox.SelectedItem).ToString();
         }
 
     }

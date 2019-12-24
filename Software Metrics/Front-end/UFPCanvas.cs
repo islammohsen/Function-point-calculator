@@ -151,6 +151,11 @@ namespace Software_Metrics.Front_end
             int count;
             if (int.TryParse(inputCountTextBox.Text, out count))
             {
+                if (count < 0)
+                {
+                    MessageBox.Show("The number should be Positive.");
+                    return;
+                }
                 Grid itemsGrid = new Grid();
                 addedItemsStackPanel.Children.Add(itemsGrid);
                 Label addedItemLabel = FrontEndHelper.CreateLabel(canvas.Width, 30, 15,
@@ -192,7 +197,7 @@ namespace Software_Metrics.Front_end
             var addedItemsStackPanel = (StackPanel) tags[2];
             data.Remove(toBeDeletedItem);
             addedItemsStackPanel.Children.Remove(toBeDeletedGrid);
-            //MessageBox.Show(toBeDeletedItem.ToString());
+            MessageBox.Show($"successfully deleted {toBeDeletedItem}");
         }
 
         private void Next_Button_Click(object sender, RoutedEventArgs e)
